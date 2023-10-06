@@ -11,5 +11,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: CupOfTea696/gh-action-auto-release@v1.0.2
+        with:
+          title: $semver
+          tag: $semver
+          changelog-entry: Overview
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
