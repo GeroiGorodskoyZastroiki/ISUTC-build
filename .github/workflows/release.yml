@@ -1,0 +1,13 @@
+name: Release Build
+
+on:
+  push:
+    branches: main
+
+jobs:
+  release:
+    name: Release Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: CupOfTea696/gh-action-auto-release@v1.0.2
