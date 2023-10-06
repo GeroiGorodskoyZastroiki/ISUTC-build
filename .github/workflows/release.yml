@@ -15,13 +15,8 @@ jobs:
           title: $semver
           tag: $semver
           changelog-entry: Overview
-      - name: Echo
-        run: |
-          echo $semver
-    outputs:
-      version: $semver
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   merge_source:
     name: Merge Source Code Branches
@@ -40,5 +35,5 @@ jobs:
           git checkout dev
           git checkout main
           echo ${{ needs.release.outputs.version }}
-          git merge --no-ff dev -m "${{ needs.release.outputs.version }}"
+          git merge --no-ff dev -m "${{ github.workflow }}"
           git push
