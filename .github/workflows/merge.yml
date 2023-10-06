@@ -19,5 +19,4 @@ jobs:
           git checkout dev
           git checkout main
           git merge --no-ff dev
-          git commit -m "Aboba132"
           git push
