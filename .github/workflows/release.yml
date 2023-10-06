@@ -34,6 +34,5 @@ jobs:
           cd ISUTC
           git config user.email "${{ secrets.EMAIL }}"
           git config user.name "${{ secrets.GH_NAME }}"
-          git checkout dev
-          git merge --no-ff dev -m "${{ needs.release.outputs.version }}"
+          git merge dev -m "${{ needs.release.outputs.version }}"
           git push origin main
