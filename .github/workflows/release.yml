@@ -8,8 +8,6 @@ jobs:
   release:
     name: Release Build
     runs-on: ubuntu-latest
-    outputs:
-      version: $semver
     steps:
       - uses: actions/checkout@v2
       - uses: CupOfTea696/gh-action-auto-release@v1.0.2
@@ -17,6 +15,11 @@ jobs:
           title: $semver
           tag: $semver
           changelog-entry: Overview
+      - name: Echo
+        run: |
+          echo $semver
+    outputs:
+      version: $semver
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
