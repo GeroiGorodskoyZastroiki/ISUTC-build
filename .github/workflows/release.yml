@@ -35,5 +35,5 @@ jobs:
           git checkout dev
           git checkout main
           echo ${{ needs.release.outputs.version }}
-          git merge --no-ff dev -m "${{ github.workflow }}"
+          git merge dev
           git push
