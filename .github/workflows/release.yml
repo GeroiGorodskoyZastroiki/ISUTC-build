@@ -16,7 +16,7 @@ jobs:
           tag: $semver
           changelog-entry: Overview
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
 
   merge_source:
     name: Merge Source Code Branches
@@ -25,15 +25,15 @@ jobs:
     steps:
       - name: Clone Source Code Repository
         run: |
-          git clone https://${{ secrets.GH_PAT }}@github.com/GeroiGorodskoyZastroiki/ISUTC.git
+          git clone https://${{ secrets.GH_PAT }}@github.com/${{ vars.GH_USER }}/${{ vars.GH_SOURCE_CODE_REPO }}.git
 
       - name: Merge dev into main
         run: |
           cd ISUTC
           git config user.email "${{ secrets.EMAIL }}"
-          git config user.name "${{ secrets.GH_NAME }}"
-          git checkout dev
-          git checkout main
+          git config user.name "${{ vars.GH_USER }}"
+          git checkout ${{ vars.GH_SOURCE_CODE_BRANCH_FROM }}
+          git checkout ${{ vars.GH_SOURCE_CODE_BRANCH_INTO }}
           echo ${{ needs.release.outputs.version }}
-          git merge dev
+          git merge ${{ vars.GH_SOURCE_CODE_BRANCH_FROM }}
           git push
